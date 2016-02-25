@@ -37,14 +37,14 @@ page {
     theme = EXT:t3_camelia/Resources/Public/Less/Theme/theme.less
   }
   includeJSFooter {
-    cookie          = fileadmin/Sarrazac/gabarit/Resources/Public/JavaScript/Libs/jquery.cookies.js
-    global          = fileadmin/Sarrazac/gabarit/Resources/Public/JavaScript/Libs/global.js
-    #toolsSimple     = fileadmin/Sarrazac/gabarit/Resources/Public/JavaScript/Libs/jquery.tools-simple.min.js
-    overlayGallery  = fileadmin/Sarrazac/gabarit/Resources/Public/JavaScript/Libs/tools.overlay.gallery-1.0.2.js
-    artificaGallery = fileadmin/Sarrazac/gabarit/Resources/Public/JavaScript/Libs/jquery.artifica.gallery-1.0.0.js
-    artifica        = fileadmin/Sarrazac/gabarit/Resources/Public/JavaScript/Libs/jquery.artifica-1.0.7.js
-    nanoscroller    = fileadmin/Sarrazac/gabarit/Resources/Public/JavaScript/Libs/jquery.nanoscroller.js
-    main            = fileadmin/Sarrazac/gabarit/Resources/Public/JavaScript/main.js
+    cookie          = EXT:t3_camelia/Resources/Public/JavaScript/Libs/jquery.cookies.js
+    global          = EXT:t3_camelia/Resources/Public/JavaScript/Libs/global.js
+    #toolsSimple     = EXT:t3_camelia/Resources/Public/JavaScript/Libs/jquery.tools-simple.min.js
+    overlayGallery  = EXT:t3_camelia/Resources/Public/JavaScript/Libs/tools.overlay.gallery-1.0.2.js
+    artificaGallery = EXT:t3_camelia/Resources/Public/JavaScript/Libs/jquery.artifica.gallery-1.0.0.js
+    artifica        = EXT:t3_camelia/Resources/Public/JavaScript/Libs/jquery.artifica-1.0.7.js
+    nanoscroller    = EXT:t3_camelia/Resources/Public/JavaScript/Libs/jquery.nanoscroller.js
+    main            = EXT:t3_camelia/Resources/Public/JavaScript/main.js
   }
 }
 
@@ -246,15 +246,15 @@ plugin.tx_cal_controller {
   view {
     templateRootPaths {
       0 = {$plugin.tx_sfeventmgt.view.templateRootPath}
-      1 = fileadmin/Sarrazac/gabarit/Resources/Private/Templates/Cal/
+      1 = EXT:t3_camelia/Resources/Private/Templates/Cal/
     }
     partialRootPaths {
       0 = {$plugin.tx_sfeventmgt.view.partialRootPath}
-      1 = fileadmin/Sarrazac/gabarit/Resources/Private/Templates/Cal/Partials/
+      1 = EXT:t3_camelia/Resources/Private/Templates/Cal/Partials/
     }
     layoutRootPaths {
       0 = {$plugin.tx_sfeventmgt.view.layoutRootPath}
-      1 = fileadmin/Sarrazac/gabarit/Resources/Private/Layouts/Cal/
+      1 = EXT:t3_camelia/Resources/Private/Layouts/Cal/
     }
   }
   view {
@@ -263,7 +263,6 @@ plugin.tx_cal_controller {
     }
   }
   activateFluid = 1
-  pidList = 834
   display {
     tx_news {
       # @description  This is the heart of the connection SQL. It will be used in conjunction with
