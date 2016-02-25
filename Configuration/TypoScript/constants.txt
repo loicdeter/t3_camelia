@@ -1,0 +1,40 @@
+page {
+  theme {
+    news.list.maxWInText = 0
+    copyright.text = Site officiel de <a href="http://www.sarrazac.fr">Sarrazac</a>, fonctionnant avec <a href="http://www.typo3.org">TYPO3</a> et développé par le <a href="http://www.cdg46.fr">CDG46</a>.
+  }
+
+  fluidtemplate {
+    layoutRootPath = fileadmin/Sarrazac/gabarit/Resources/Private/Layouts/Page/
+    partialRootPath = fileadmin/Sarrazac/gabarit/Resources/Private/Partials/Page/
+    templateRootPath = fileadmin/Sarrazac/gabarit/Resources/Private/Templates/Page/
+  }
+}
+
+plugin.tx_cal_controller {
+  pidList = 834
+
+  view {
+    #list.listWithTeaserTemplate = fileadmin/Sarrazac/gabarit/Resources/Private/Templates/Cal/list.tmpl
+    dateFormat = %d %b
+    event.eventTemplateFluid = fileadmin/Sarrazac/gabarit/Resources/Private/Templates/Cal/event.html
+    list.listTemplateFluid = fileadmin/Sarrazac/gabarit/Resources/Private/Templates/Cal/list.html
+  }
+  listMaxW = 300
+  singleMaxW = 300
+}
+
+
+plugin.tx_news.view.partialRootPath = fileadmin/Sarrazac/gabarit/Resources/Private/Partials/News/
+plugin.tx_news.view.templateRootPath = fileadmin/Sarrazac/gabarit/Resources/Private/Templates/News/
+
+
+config {
+  compressCss = 0
+  concatenateCss = 0
+  concatenateJs = 0
+}
+
+plugin.bootstrap_package.settings.overrideLessVariables = 0
+page.logo.file =
+page.theme.breadcrumbEnableLevel = 1

@@ -1,0 +1,35 @@
+<div class="article">
+  <div class="header">
+    <h2 class="title">
+        <f:link.page
+            additionalParams="{tx_cal_controller: '{view: \'event\',type: event.type, uid: event.uid, year: event.start.year, month: event.start.month, day: event.start.day  }'}">{event.title}</f:link.page>
+    </h2>
+    <f:for each="{event.images}" as="image" iteration="itemIteration">
+        <f:if condition="{itemIteration.isFirst}">
+            <div class="news-img-wrap">
+              <f:image src="{image.uid}" alt="{image.originalResource.title}" class="lazyload img-responsive" treatIdAsReference="1" width="100" height="66"/>
+            </div>
+        </f:if>
+    </f:for>
+
+   <div class="teaser-text">
+   </div>
+
+    <div class="footer">
+      <p>
+        <span class="news-list-date">
+          <f:format.date format='d/m/Y'>@{event.start.time}</f:format.date>
+        </span>
+        <f:for each="{event.categories}" as="category" iteration="itemIteration">
+           <f:if condition="{itemIteration.isFirst}">
+             <span class="news-list-category">
+          </f:if>
+          {category.title}
+          <f:if condition="{itemIteration.isLast}">
+            </span>
+          </f:if>
+        </f:for>
+      </p>
+    </div>
+  </div>
+</div>

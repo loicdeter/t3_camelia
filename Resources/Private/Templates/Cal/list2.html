@@ -1,0 +1,27 @@
+{namespace cal=Tx_Cal_ViewHelpers}
+
+<div class="news">
+  <f:if condition="{listView.master_array}">
+    <f:then>
+      <f:for each="{listView.master_array}" as="entriesOfADay" key="day">
+        <f:if
+          condition="{day} <= {f:format.date(format:'Ymd' date:'@{listView.endtime.time}')}">
+
+          <f:for each="{entriesOfADay}" as="entriesOfAnHour">
+            <f:for each="{entriesOfAnHour}" as="event">
+              <div class="wrapper-post">
+              <f:render partial="List/event2" arguments="{event:event, settings:settings}" />
+              </div>
+            </f:for>
+          </f:for>
+        </f:if>
+      </f:for>
+  
+  </f:then>
+  <f:else>
+                        <f:translate
+                                key="LLL:EXT:cal/Resources/Private/Language/locallang.xml:l_no_results" />
+                </f:else>
+  </f:if>
+
+</div>

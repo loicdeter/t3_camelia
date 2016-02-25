@@ -1,0 +1,31 @@
+<div class="{pageClass}" role="document">
+
+  <f:link.page class="sr-only sr-only-focusable" section="content">
+    {f:translate(key: 'skiptomaincontent', extensionName: 'bootstrap_package')}
+  </f:link.page>
+  <f:if condition="{headerImage}">
+    <f:cObject typoscriptObjectPath="lib.banner"/>
+  </f:if>
+  <f:if condition="{showHeader}">
+    <f:render partial="Navigation/Main" arguments="{_all}"/>
+    <f:cObject typoscriptObjectPath="lib.navigation.breadcrumb"/>
+    <f:cObject typoscriptObjectPath="lib.toolbox"/>
+  </f:if>
+  <!--TYPO3SEARCH_begin-->
+  <div id="content" class="main">
+    <div class="container-fluid">
+      <f:render section="Main"/>
+      <f:if condition="{onePage}">
+      <f:cObject typoscriptObjectPath="lib.content.onepage"/>
+      </f:if>
+      <div class="gotoTopSlider" style="display: block;">
+        <a title="Retour à la page d'accueil" class="fa fa-home fa-3" href="http://www.sarrazac.fr/"><span class="display-none">Retour à la page d'accueil</span></a>
+        <a title="Haut de page" class="fa fa-arrow-up fa-3" href="#"><span class="display-none">Haut de page</span></a>
+    </div>
+    </div>
+  </div>
+  <!--TYPO3SEARCH_end-->
+  <f:if condition="{showFooter}">
+    <f:render partial="Structure/Footer" arguments="{_all}"/>
+  </f:if>
+</div>

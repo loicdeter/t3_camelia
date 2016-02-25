@@ -1,0 +1,406 @@
+##################
+#### LANGUAGE ####
+##################
+lib.language >
+
+
+################
+#### CONFIG ####
+################
+config {
+  index_enable = 1
+  index_externals = 1
+
+  language = fr
+  locale_all = fr_FR.UTF-8
+  htmlTag_setParams = lang="fr" dir="ltr" class="no-js"
+  tx_realurl_enable = 1
+  baseURL = http://prod.sarrazac.fr
+}
+
+
+############
+### PAGE ###
+############
+page {
+  
+  includeCSSLibs {
+    googlefont = https://fonts.googleapis.com/css?family=PT+Sans:700
+    googlefont.external = 1
+    awesomefont = https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css
+    awesomefont.external = 1
+    simpleWeather = https//cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.css
+    simpleWeather.external = 1
+  }
+  includeCSS {
+    #bootstrap = EXT:bootstrap_package/Resources/Public/Less/Bootstrap/bootstrap.less
+    theme = EXT:t3_camelia/Resources/Public/Less/Theme/theme.less
+  }
+  includeJSFooter {
+    cookie          = fileadmin/Sarrazac/gabarit/Resources/Public/JavaScript/Libs/jquery.cookies.js
+    global          = fileadmin/Sarrazac/gabarit/Resources/Public/JavaScript/Libs/global.js
+    #toolsSimple     = fileadmin/Sarrazac/gabarit/Resources/Public/JavaScript/Libs/jquery.tools-simple.min.js
+    overlayGallery  = fileadmin/Sarrazac/gabarit/Resources/Public/JavaScript/Libs/tools.overlay.gallery-1.0.2.js
+    artificaGallery = fileadmin/Sarrazac/gabarit/Resources/Public/JavaScript/Libs/jquery.artifica.gallery-1.0.0.js
+    artifica        = fileadmin/Sarrazac/gabarit/Resources/Public/JavaScript/Libs/jquery.artifica-1.0.7.js
+    nanoscroller    = fileadmin/Sarrazac/gabarit/Resources/Public/JavaScript/Libs/jquery.nanoscroller.js
+    main            = fileadmin/Sarrazac/gabarit/Resources/Public/JavaScript/main.js
+  }
+}
+
+
+lib.slogan = TEXT
+lib.slogan.value = <p class="slogan"><a href="http://www.sarrazac.fr" title="Sarrazac.fr">Sarrazac, L’Hôpital Saint Jean – Valeyrac</a></p>
+
+lib.social = TEXT
+lib.social.value (
+  <div class="btnSocial overflow">
+    <ul>
+      <li class="list-985"><a class="fa fa-rss fa-2" title="Flux RSS" href="/flux-rss.htm"><span class="display-none">Flux RSS</span></a></li>
+      <li class="list-987"><a class="fa fa-facebook fa-2" title="Facebook" href="https://www.facebook.com/mairiedesulis" target="_blank"><span class="display-none">Facebook</a></span></li>
+    </ul>
+  </div>
+)
+
+
+###################
+#### SEARCHBOX ####
+###################
+lib.searchbox = TEXT
+lib.searchbox.value (
+  <form class="navbar-form navbar-right artifica-form" role="search" autocomplete="off" method="post" action="recherche/">
+    <div class="form-group">
+      <input type="text" class="form-control" id="query" placeholder="Rechercher..." name="tx_indexedsearch[sword]" required title="Recherche sur le site">
+    </div>
+    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+  </form>
+)
+   
+################
+#### TOPBAR ####
+################
+lib.navigation.top = COA
+lib.navigation.top {
+   wrap = <ul class="navSecondaire navbar-nav navbar-right top">|</ul>
+   10 = HMENU
+   10 {
+     special = directory
+     special.value = {$page.menu.top}
+     1 = TMENU
+     1 {
+       NO = 1
+       NO {
+         wrapItemAndSub.insertData = 1
+         wrapItemAndSub = <li class="no-child">|</li>
+         ATagParams = class="fa fa-{field:subtitle} fa-3"
+         ATagParams.insertData=1
+         stdWrap.dataWrap = <span>|</span>
+       }
+     }
+  }
+}
+
+####################
+#### NAVIGATION ####
+####################
+lib.navigation.main {
+  10 {
+    entryLevel = 0
+    1 {
+      wrap = <div class="nav"><div class="navPrincipal" id="navigationNiveau1Ancre" role="navigation"><p class="invisible">Navigation principale</p><ul>|</ul></div></div>
+       NO {
+         linkWrap >
+         wrapItemAndSub.insertData = 1
+         wrapItemAndSub = <li class="page-item-{field:uid} page-item-first">|</li>|*|<li class="page-item-{field:uid}">|</li>|*|<li class="page-item-{field:uid} page-item-last">|</li>
+      }
+      IFSUB < .NO
+      ACTIFSUB {
+         wrapItemAndSub.insertData = 1
+         wrapItemAndSub = <li class="page-item-{field:uid} active page-item-first">|</li>|*|<li class="page-item-{field:uid} active">|</li>|*|<li class="page-item-{field:uid} active page-item-last">|</li>
+      }
+      CURIFSUB {
+         wrapItemAndSub.insertData = 1
+         wrapItemAndSub = <li class="page-item-{field:uid} active page-item-first">|</li>|*|<li class="page-item-{field:uid} active">|</li>|*|<li class="page-item-{field:uid} active page-item-last">|</li>
+      }
+    }
+    2 < .1
+    2 {
+      wrap = <ul class="menuSub">|</ul>
+      NO {
+         wrapItemAndSub.insertData = 1
+         wrapItemAndSub = <li class="page-item-{field:uid} page-item-first no-child list-1">|</li> |*| <li class="page-item-{field:uid} no-child list-2">|</li> || <li class="page-item-{field:uid} no-child list-1">|</li> |*| <li class="page-item-{field:uid} page-item-last no-child">|</li>
+
+      }
+      IFSUB < .NO
+      CURIFSUB < .NO
+      ACTIFSUB < .NO
+    }
+  }
+}
+
+
+####################
+#### SUBNAVIGATION ####
+####################
+lib.navigation.subnavigation {
+    10 {
+        1 {
+            wrap = <div class="navLeft"><ul role="navigation">|</ul></div>
+            NO {
+                wrapItemAndSub.insertData = 1
+                wrapItemAndSub = <li class="page-item-{field:uid} page-item-first">|</li>|*|<li class="page-item-{field:uid} no-child">|</li>|*|<li class="page-item-{field:uid} page-item-last">|</li>
+                wrapItemAndSub.override.cObject.10.value = <li class="current_page_item">|</li>
+            }
+            ACT {
+                wrapItemAndSub = <li class="current_page_item">|</li>
+            }
+            IFSUB < .NO
+            ACTIFSUB < .NO
+            ACTIFSUB {
+                wrapItemAndSub.insertData = 1
+                wrapItemAndSub = <li class="page-item-{field:uid} active page-item-first current_page_ancestor current_page_parent">|</li>
+            }
+            CURIFSUB < .ACTIFSUB
+        }
+        2 < .1
+        2 {
+            wrap = <ul class="navLeftSub">|</ul>
+            NO {
+                wrapItemAndSub.insertData = 1
+                wrapItemAndSub = <li class="page-item-{field:uid} page-item-first page-item-last current_page_item no-child">|</li>
+            }
+            IFSUB < .NO
+            CURIFSUB < .NO
+            ACTIFSUB < .NO
+        }
+    }
+}
+
+#######################
+#### LIENS DIRECTS ####
+#######################
+lib.navigation.direct = HMENU
+lib.navigation.direct {
+  special = directory
+  special.value = {$page.menu.direct}
+  1= TMENU
+  1 {
+    wrap=<div class="navDemarches" role="navigation"><p class="invisible">Navigation Liens directs</p><ul class="nav nav-tabs">|</ul></div>
+    noBlur=1
+    expAll = 1
+    NO = 1
+    NO {
+      wrapItemAndSub = <li class="direct"> | </li>
+    }
+    ACT = 1
+    ACT {
+      wrapItemAndSub = <li class="direct active"> | </li>
+    }
+    CUR < .ACT
+    IFSUB < .NO
+    IFSUB {
+       #doNotLinkIt = 1
+    }
+  }
+  2 < .1
+  2 {
+    wrap = <ul class="menuSub">|</ul>
+  }
+}
+
+####################
+#### PAGE CLASS ####
+####################
+lib.page.class {
+    // parent id
+    60 = TEXT
+    60 {
+        field = pid
+        noTrimWrap = | page-| |
+    }
+    // browser
+    70 = TEXT
+    70.value = none
+    
+}
+############################
+### Detection navigateur ###
+############################
+[browser = msie]
+lib.page.class.70.value = msie
+[browser = firefox]
+lib.page.class.70.value = firefox
+[browser = chrome]
+lib.page.class.40.value = chrome
+[browser = safari]
+lib.page.class.70.value = safari
+[global]
+
+page.10.variables.pageClass < lib.page.class
+
+##################
+#### CALENDAR ####
+##################
+plugin.tx_cal_controller {
+  clear_anyway = 1
+  view {
+    templateRootPaths {
+      0 = {$plugin.tx_sfeventmgt.view.templateRootPath}
+      1 = fileadmin/Sarrazac/gabarit/Resources/Private/Templates/Cal/
+    }
+    partialRootPaths {
+      0 = {$plugin.tx_sfeventmgt.view.partialRootPath}
+      1 = fileadmin/Sarrazac/gabarit/Resources/Private/Templates/Cal/Partials/
+    }
+    layoutRootPaths {
+      0 = {$plugin.tx_sfeventmgt.view.layoutRootPath}
+      1 = fileadmin/Sarrazac/gabarit/Resources/Private/Layouts/Cal/
+    }
+  }
+  view {
+    event {
+      isPreview = 1
+    }
+  }
+  activateFluid = 1
+  pidList = 834
+  display {
+    tx_news {
+      # @description  This is the heart of the connection SQL. It will be used in conjunction with
+      #        the view-where (findallWithinWhere, findAll and findWhere) to retrieve the according records.
+      event_select {
+        selectFields = tx_news_domain_model_news.*
+      }
+      
+      # @description  This is the heart of the connection SQL. It will be used in conjunction with
+      #        the view-where (findallWithinWhere, findAll and findWhere) to retrieve the according records plus their categories.
+      event_select_with_cat {
+        selectFields = tx_news_domain_model_news.*,tx_news_cat_mm.uid_foreign
+        leftjoin = tx_news_cat_mm ON (tx_news.uid = tx_news_cat_mm.uid_local) JOIN tx_news_cat ON (tx_news_cat_mm.uid_foreign = tx_news_cat.uid)
+      }
+      
+      # @description  Configure the table the records come from.
+      pidTable = tx_news_domain_model_news
+      
+      # @description  Define the where clause for the views: day, week, month, year, list, rss
+      #        Use ###START### and ###END### as marker to be replaced during runtime with the timeframe
+      findAllWithinWhere = ((tx_news.datetime >=###START### AND tx_news.datetime+3600<=###END###) OR (tx_news.datetime+3600<=###END### AND tx_news.datetime+3600>=###START###) OR (tx_news.datetime+3600>=###END### AND tx_news.datetime<=###START###))
+      
+      # @description  Define the where clause for the ? view.
+      #        Use ###START### and ###END### as marker to be replaced during runtime with the timeframe
+      findAll =
+      
+      # @description  Define the where clause for the single event views: event, ics
+      #        Use ###START### and ###END### as marker to be replaced during runtime with the timeframe
+      findWhere = tx_news_domain_model_news.uid = ###UID###
+      
+      # @description  Enable this to create a link to another page containing the single view of the external plugin.
+      #        Use ###DB_FIELD### to retrieve record related informations from the database (DB_FIELD is a placeholder)
+      externalPlugin = {$plugin.tx_cal_controller.display.tx_news.externalPlugin}
+      
+      externalPlugin {
+        
+        # @description  Define the pid for the external plugin single view
+        singleViewPid = {$plugin.tx_cal_controller.display.tx_news.externalPlugin.singleViewPid}
+        
+        # @description  Array containing the url paramter to be added to the url
+        additionalParams = {$plugin.tx_cal_controller.display.tx_news.externalPlugin.additionalParams}
+      }
+      
+      # @description  Enables the localization and/or versioning of the result record
+      enableLocalizationAndVersioning = 0
+      
+      # @description  Enables the localization and/or versioning of the category result record
+      enableLocalizationAndVersioningCat = 0
+
+      # @description  Define the field containing the timestamp for the start time
+      startTimeField = datetime
+      
+      # @description  Define the field containing the timestamp for the end time
+      endTimeField =
+      
+      # @description  If there is no end time, you can define a default length (in minutes)
+      defaultLength = 180
+      
+      # @description  For a quick and easy integration, map your record fields to the standard event fields
+      #        You can always use ###DB_FIELD### (where DB_FIELD is a placeholder for a database row entry) to insert database values  
+      fieldMapping {
+        title = title
+        description = bodytext
+        location =
+        organizer =
+        image = image
+      }
+      
+      # @description  The template to be used with these records
+      template = EXT:cal_ts_service/Resources/Private/Templates/ts.tmpl
+      
+      # @description  The header style class to be used
+      headerStyle = red_catheader
+      
+      # @description  The body style class to be used
+      bodyStyle = red_catbody
+      
+      # @description  The title in the legend description for these records
+      legendDescription = News
+      
+      search {
+        # @description  The fields, which are allowed to be searched through
+        searchEventFieldList =  tx_news_domain_model_news.title, tx_news_domain_model_news.bodytext
+      }
+      
+      # @description  Define the SQL to retrieve the categories
+      cat_select {
+        selectFields = sys_category.*,sys_category_record_mm.uid_local
+        leftjoin = sys_category_record_mm ON (sys_category_record_mm.uid_foreign = tx_news_domain_model_news.categories)
+        andWhere =
+      }
+      
+      # @description  The table containing the category records
+      catTable = sys_category
+      
+      # @description  Retrieving and adopting the event configuration for the event view.
+      event {
+        event < plugin.tx_cal_controller.view.event.event
+        event {
+          # @description  The default image path is related to the tx_cal_{object type}. Therefore the path has to be overwritten
+          image >
+                image = IMAGE
+                image {
+                     file.import.field = image
+                     file.import.stdWrap.wrap = uploads/pics/|
+                }
+        }
+      }
+    }
+  }
+}
+
+lib.navigation.breadcrumb = COA
+lib.navigation.breadcrumb {
+    stdWrap {
+        required = 1
+        wrap = <div class="breadcrumb-section hidden-xs hidden-sm"><div class="container-fluid"><div class="headerMain"><div class="container">|</div></div></div></div>
+    }
+    10 {
+        1 {
+            wrap =<ol class="breadcrumb"><span class="here">Vous êtes ici :&nbsp</span>|</ol>
+        }
+    }
+}
+
+
+lib.toolbox < plugin.tx_pbsocial.pi1
+
+plugin.tx_news {
+  settings {
+    list {
+      media {
+        image {
+          maxWidth = 140
+          maxHeight = 105
+        }
+      }
+    }
+  }
+}
