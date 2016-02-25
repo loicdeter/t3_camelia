@@ -33,7 +33,7 @@ page {
     simpleWeather.external = 1
   }
   includeCSS {
-    #bootstrap = EXT:bootstrap_package/Resources/Public/Less/Bootstrap/bootstrap.less
+    bootstrap = EXT:bootstrap_package/Resources/Public/Less/Bootstrap/bootstrap.less
     theme = EXT:t3_camelia/Resources/Public/Less/Theme/theme.less
   }
   includeJSFooter {
