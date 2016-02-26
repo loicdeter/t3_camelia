@@ -598,19 +598,25 @@ div.savoirPlus {
 .navPrincipal {
   float:left;
   height:41px;
-  li.page-item-233, li.page-item-233.current_page_ancestor, li.page-item-233.current_page_item, li.page-item-233:hover {
+  li.@{page-item-1}, 
+  li.@{page-item-1}.current_page_ancestor, 
+  li.@{page-item-1}.current_page_item,
+  li.@{page-item-1}:hover {
     background:#009dde;
     border-bottom:1px solid #009dde;
   }
-  li.page-item-232, li.page-item-232.current_page_ancestor, li.page-item-232.current_page_item, li.page-item-232:hover {
+  li.@{page-item-2},
+  li.@{page-item-2}.current_page_ancestor,
+  li.@{page-item-2}.current_page_item,
+  li.@{page-item-2}:hover {
     background:#ffffff;
     border-bottom:1px solid #ffffff;
   }
-  li.page-item-231, li.page-item-231.current_page_ancestor, li.page-item-231.current_page_item, li.page-item-231:hover {
+  li.@{page-item-3}, li.@{page-item-3}.current_page_ancestor, li.@{page-item-3}.current_page_item, li.@{page-item-3}:hover {
     background:#e3006c;
     border-bottom:1px solid #e3006c;
   }
-  li.page-item-231 > a, li.page-item-233 > a {
+  li.@{page-item-3} > a, li.@{page-item-1} > a {
     color:#ffffff;
   }
   li:hover .menuSub, li a:focus + .menuSub {
@@ -690,13 +696,13 @@ div.savoirPlus {
       font-size:13px;
     }
   }
-  .page-item-233 .menuSub {
+  .@{page-item-1} .menuSub {
     border-top:8px solid #009dde;
   }
-  .page-item-232 .menuSub {
+  .@{page-item-2} .menuSub {
     border-top:8px solid #ffffff;
   }
-  .page-item-231 .menuSub {
+  .@{page-item-3} .menuSub {
     border-top:8px solid #e3006c;
   }
 }
